@@ -80,6 +80,21 @@ class Preset_Command extends WP_CLI_Command {
 				'success'    => 'Wordpress Importer successfully installed',
 				'fail'       => 'Wordpress Importer could not be installed',
 			),
+			array(
+				'command'    => 'plugin install',
+				'args'       => array( 'autoptimize' ),
+				'assoc_args' => array(),
+				'success'    => 'Autoptimize successfully installed',
+				'fail'       => 'Autoptimize could not be installed',
+			),
+			array(
+				'command'    => 'plugin install',
+				'args'       => array( 'nginx-champuru' ),
+				'assoc_args' => array(),
+				'success'    => 'Nginx Cache Controller successfully installed',
+				'fail'       => 'Nginx Cache Controller could not be installed',
+			),
+			
 		);
 
 		// WooCommerce specific presets
@@ -155,8 +170,13 @@ class Preset_Command extends WP_CLI_Command {
 		$type = $assoc_args['type'];
 
 		// Optionally clone WooCommerce related repos
-		if ( 'woo' == $type ) {
-			$presets = array_merge( $presets, $woo_presets);
+		switch ($type) {
+			case 'woo':
+				$presets = array_merge( $presets, $woo_presets);
+				break;
+			case 'normal':
+				// $presets = $normal_presets;
+				break;
 		}
 
 		// Export a copy of the db at the end
