@@ -113,6 +113,13 @@ class Preset_Command extends WP_CLI_Command {
 				'success'    => 'WooCommerce successfully installed',
 				'fail'       => 'WooCommerce could not be installed',
 			),
+			array(
+				'command'    => 'plugin install',
+				'args'       => array( 'regenerate-thumbnails' ),
+				'assoc_args' => array( 'activate' => true ),
+				'success'    => 'Regenerate thumbnails successfully installed',
+				'fail'       => 'Regenerate thumbnails could not be installed',
+			),
 			// array(
 			// 	'exec'       => true,
 			// 	'command'    => 'git clone git@github.com:woocommerce/woocommerce.git ' . ABSPATH  . 'wp-content/plugins/woocommerce --quiet' ,
